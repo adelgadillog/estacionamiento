@@ -29,13 +29,13 @@ pipeline {
   stages{
     stage('Checkout') {
       steps{
-        echo "------------>Checkout<------------"
+        echo '------------>Checkout<------------'
       }
     }
     
     stage('Compile & Unit Tests') {
       steps{
-        echo "------------>Compile & Unit Tests<------------"
+        echo '------------>Compile & Unit Tests<------------'
 
       }
     }
