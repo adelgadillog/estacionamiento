@@ -81,7 +81,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     }
     success {
       echo 'This will run only if successful'
-	  
+	  mail (to: 'alejandro.delgadillo@ceiba.com.co',subject: "Success Pipeline:${currentBuild.fullDisplayName}",body: "Success build ${env.BUILD_URL}")
     }
     failure {
       echo 'This will run only if failed'
