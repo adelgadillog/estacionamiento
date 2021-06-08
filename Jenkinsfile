@@ -30,15 +30,23 @@ pipeline {
     stage('Checkout') {
       steps{
         echo '------------>Checkout<------------'
-      }
-    }
-    
-    stage('Compile & Unit Tests') {
-      steps{
-        echo '------------>Compile & Unit Tests<------------'
+		checkout([
+			$class: 'GitSCM', 
+			branches: [[name: '*/master']], 
+			doGenerateSubmoduleConfigurations: false, 
+			extensions: [], 
+			gitTool: 'Default', 
+			submoduleCfg: [], 
+			userRemoteConfigs: [[
+			credentialsId: 'GitHub_adelgadillog', 
+			url:'https://github.com/adelgadillog/estacionamiento.git'
+			]]
+		])
 
       }
     }
+    
+    
 
     stage('Static Code Analysis') {
       steps{
@@ -55,7 +63,9 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
 
       }
     }  
+	
   }
+
 
   post {
     always {
